@@ -1,0 +1,23 @@
+#game div {
+  border: 2px solid black;
+  width: 15%;
+  height: 200px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.red-open{
+  background-color: red;
+}
+ .orange-open{
+  background-color: orange;
+}
+.purple-open{
+  background-color: purple;
+}
+.green-open{
+  background-color: green;
+}
+.blue-open{
+  background-color: blue;
+}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Select a Story {% endblock %}
+{% block form %} <h1>Select a Story</h1>
+    <div>
+        <label>Choose a story</label>
+        <form action="/prep_story">
+        <select name="story_id">
+            {% for id in story_id %}
+            <option value = '{{id}}'>{{id}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

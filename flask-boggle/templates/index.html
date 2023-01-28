@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Boggle Game{% endblock %}
+{% block body_page %}
+    <h1>Welcome to Boggle Game</h1>
+    <section id="boggle">
+        <p>High Score:
+            {{high_score}} in {{plays}}
+        </p>
+        <p> Score: <b class="score">0</b>
+            Time: <b class="timer"></b>
+        </p>
+        <table>
+            <tbody>
+                {% for x in board %}
+                    <tr>
+                        {% for i in x %}
+                            <td>{{i}}</td>
+                        {% endfor %}
+                    </tr>
+                {%endfor%}    
+            </tbody>
+        </table>
+        <form class="add-word" method="POST">
+            <label>Your guess:</label>
+            <input class="word" type="text" name="word" autofocus>
+            <button>Enter</button>
+        </form>
+        <p class="msg"></p>            <!--msg from js-->
+        <ul class="words"></ul>        <!--tabel for words from js-->
+    </section>
+{% endblock %}

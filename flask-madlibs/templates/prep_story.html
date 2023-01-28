@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Flask Madlibs {% endblock %}
+{% block form %} <h1>Madlibs with Flask</h1>
+    <div id="enter_form">
+        <form action="/story">
+            <input name="story_id" value = {{option}} hidden></input>
+            {% for prompt in prompts %}
+            <p>
+                <label>{{prompt.capitalize()}}</label>
+                <input type="text" name = '{{prompt}}'>
+            </p>
+            {% endfor%}
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block body_page %}
+    <h1>Answers</h1>
+    <div id="result">
+        <form action="/">
+            <p>Your answers are:
+                <ol>
+                    {% for q in range(limit) %}
+                        <li>{{questions_list[q][:-1]}}: {{ session['responses'][q] }}</li>
+                    {% endfor %}
+                </ol>
+            </p>
+            <button type="submit">Go Home</button>
+        </form>
+    </div>
+{% endblock %}

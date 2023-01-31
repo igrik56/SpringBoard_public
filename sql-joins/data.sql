@@ -28,5 +28,5 @@ INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Toyota', 'Cam
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Honda', 'Civic', 2001, 7999.99, 5);
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Nissan', 'Altima', 1999, 1899.99, 6);
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Lexus', 'ES350', 1998, 1599.99, 6);
-INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '300', 2012, 22999.99, 6);
-INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '700', 2015, 52999.99, 6);
+INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '330', 2012, 22999.99, 6);
+INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '730', 2015, 52999.99, 6);

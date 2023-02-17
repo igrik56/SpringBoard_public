@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - {{user.first_name}} {{user.last_name}}{% endblock %}
+{% block body_page %}
+    <h1>{{user.first_name}} {{user.last_name}} Details</h1>
+    <div class="container">
+        <div class="avatar">
+            <img src="/{{user.img_url}}" height="100" width="100">
+        </div>
+        <div class="user_name">
+            {{user.first_name}} {{user.last_name}}
+        </div>
+    </div>
+    <form class="buttons">
+        <h1 class="confirm">Are you sure you wish to DELETE {{user.first_name}} {{user.last_name}} ?</h1>
+        <button id="cancel" formaction="/">Cancel</button>
+        <button formaction="/{{user.id}}/delete" formmethod="POST">Submit Changes</button>
+    </div>
+   
+
+{% endblock %}

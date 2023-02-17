@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - {{user.first_name}} {{user.last_name}}{% endblock %}
+{% block body_page %}
+    <h1>{{user.first_name}} {{user.last_name}} Details</h1>
+    <div class="container">
+        <div class="avatar">
+            <img src="/{{user.img_url}}" height="100" width="100">
+        </div>
+        <div class="user_name">
+            {{user.first_name}} {{user.last_name}}
+        </div>
+    </div>
+
+    <form>
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="img_url" placeholder="Avatar URL">
+        <button formaction="/{{user.id}}/edit" formmethod="POST">Submit Changes</button>
+        <button formaction="/">Cancel</button>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Blogly{% endblock %}
+{% block body_page %}
+    <h1>Users</h1>
+        <ul>
+            {% for u in users %}
+                    <li><a href="/{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2>Add New User</h2>
+        <form action="/" method="POST">
+            <input type="text" name="first_name" placeholder="First Name">
+            <input type="text" name="last_name" placeholder="Last Name">
+            <input type="text" name="img_url" placeholder="Avatar URL">
+            <button>Cultivate User</button>
+        </form>
+    
+{% endblock %}

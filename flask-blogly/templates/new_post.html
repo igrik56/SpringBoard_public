@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - {{user.first_name}} {{user.last_name}}{% endblock %}
+{% block body_page %}
+    <h1>{{user.first_name}} {{user.last_name}}'s New Post</h1>
+
+    <form>
+        <div>
+            <label>Title:</label>
+            <input type="text", name="title", placeholder="Title">
+        </div>
+        <div>
+            <label>Content:</label>
+            <input type="text", name="content", placeholder="Content" size="75">
+        </div>
+
+        <button id="cancel" formaction="/users/{{user.id}}">Cancel</button>
+        <button id="add" formaction="/users/{{user.id}}/post" formmethod="POST">Add</button>
+    </form>
+    
+{% endblock %}

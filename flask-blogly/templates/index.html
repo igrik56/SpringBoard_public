@@ -4,12 +4,12 @@
     <h1>Users</h1>
         <ul>
             {% for u in users %}
-                    <li><a href="/{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
+                    <li><a href="/users/{{u.id}}">{{u.first_name}} {{u.last_name}}</a></li>
             {% endfor %}
         </ul>
 
         <h2>Add New User</h2>
-        <form action="/" method="POST">
+        <form action="/users" method="POST">
             <input type="text" name="first_name" placeholder="First Name">
             <input type="text" name="last_name" placeholder="Last Name">
             <input type="text" name="img_url" placeholder="Avatar URL">

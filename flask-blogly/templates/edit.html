@@ -15,8 +15,8 @@
         <input type="text" name="first_name" placeholder="First Name">
         <input type="text" name="last_name" placeholder="Last Name">
         <input type="text" name="img_url" placeholder="Avatar URL">
-        <button formaction="/{{user.id}}/edit" formmethod="POST">Submit Changes</button>
-        <button formaction="/">Cancel</button>
+        <button formaction="/users/{{user.id}}/edit" formmethod="POST">Submit Changes</button>
+        <button formaction="/users">Cancel</button>
     </form>
     
 {% endblock %}

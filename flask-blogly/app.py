@@ -1,7 +1,10 @@
 """Blogly application."""
 
 from flask import Flask, request, redirect, render_template
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
+from datetime import datetime
+
+time_now = datetime.now()
 
 app = Flask(__name__)
 
@@ -16,17 +19,16 @@ db.create_all()
 
 @app.route('/')
 def home_page():
+    return redirect ('/users')
+
+@app.route('/users')
+def users():
     """ Home page. Shows list of users"""
-
-    # bob = User(first_name = 'Bob', last_name = 'Hunter')
-    # db.session.add()
-    # db.session.commit()
-
     users = User.query.all()
 
     return render_template('index.html', users = users)
 
-@app.route('/', methods = ["POST"])
+@app.route('/users', methods = ["POST"])
 def create_user():
     '''Creating new users'''
 
@@ -39,9 +41,9 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(f'/{new_user.id}')
+    return redirect(f'/users/{new_user.id}')
 
-@app.route('/<int:user_id>')
+@app.route('/users/<int:user_id>')
 def user_details(user_id):
     '''Show user's details'''
 
@@ -49,7 +51,7 @@ def user_details(user_id):
 
     return render_template('user_details.html', user= user)
 
-@app.route('/<int:user_id>/edit')
+@app.route('/users/<int:user_id>/edit')
 def update_edit(user_id):
     '''Edit page for users'''
 
@@ -57,7 +59,7 @@ def update_edit(user_id):
 
     return render_template('edit.html', user = user)
 
-@app.route('/<int:user_id>/edit', methods = ['POST'])
+@app.route('/users/<int:user_id>/edit', methods = ['POST'])
 def update_user(user_id):
     '''Post user's changes to database'''
 
@@ -70,9 +72,9 @@ def update_user(user_id):
     db.session.add(user)
     db.session.commit()
 
-    return redirect('/')
+    return redirect('/users')
 
-@app.route('/<int:user_id>/delete')
+@app.route('/users/<int:user_id>/delete')
 def delete_user_confirm(user_id):
     '''Delete user confirmation'''
 
@@ -80,11 +82,77 @@ def delete_user_confirm(user_id):
 
     return render_template('delete_confirmation.html', user = user)
 
-@app.route('/<int:user_id>/delete', methods = ['POST'])
+@app.route('/users/<int:user_id>/delete', methods = ['POST'])
 def delete_user(user_id):
     '''Delete user in DB'''
 
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
-    return redirect('/')
+    return redirect('/users')
+
+@app.route('/users/<int:user_id>/post')
+def user_new_post_form(user_id):
+
+    user = User.query.get_or_404(user_id)
+
+    return render_template('post_new.html', user = user)
+
+
+@app.route('/users/<int:user_id>/post', methods = ['POST'])
+def user_new_post(user_id):
+    
+    user = User.query.get_or_404(user_id)
+
+    title = request.form['title']
+    content = request.form['content']
+
+    new_post = Post(title = title, content = content, user_id = user.id)
+
+    db.session.add(new_post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}')
+
+@app.route('/users/<int:user_id>/<int:post_id>')
+def user_post(user_id, post_id):
+
+    user = User.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
+
+    return render_template('post.html', user = user, post = post)
+
+@app.route('/users/<int:user_id>/<int:post_id>/edit')
+def post_edit(user_id, post_id):
+
+    user = User.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
+
+    return render_template('post_edit.html', user = user, post = post)
+
+@app.route('/users/<int:user_id>/<int:post_id>/edit', methods = ['POST'])
+def post_update(user_id, post_id):
+    '''update post's changes to database'''
+
+    # user = User.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
+
+    post.title = request.form['title']
+    post.content = request.form['content']
+    # post.date = time_now.strftrime("%m/%d/%Y, %H:%M:%S") - broke at the moment T_T
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}/{post_id}')
+
+@app.route('/users/<int:user_id>/<int:post_id>/delete', methods = ['POST'])
+def post_delete(user_id, post_id):
+
+    user = User.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(f'/users/{user_id}')

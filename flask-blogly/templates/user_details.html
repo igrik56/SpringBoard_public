@@ -11,8 +11,23 @@
         </div>
     </div>
     <form class="buttons">
-        <button id="edit" formaction="/{{user.id}}/edit" formmethod="GET">Edit</button>
-        <button id="delete" formaction="/{{user.id}}/delete" formmethod="GET">Delete</button>
+            <button id="edit" formaction="/users/{{user.id}}/edit" formmethod="GET">Edit</button>
+            <button id="delete" formaction="/users/{{user.id}}/delete" formmethod="GET">Delete</button>
+    </form>
+
+    <h2>Posts:</h2>
+    <div class="container">
+        <div class = list_of_posts>
+            <ul>
+                {% for p in user.post %}
+                <!-- adding list of users's posts  -->
+                    <li><a href="/users/{{user.id}}/{{p.id}}">{{p.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>        
     </div>
-   
+    
+    <form class="buttons">
+        <button id="add_post" formaction="/users/{{user.id}}/post" formmethod="GET">Add Post</button>
+    </form>
 {% endblock %}

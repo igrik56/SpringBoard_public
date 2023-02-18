@@ -12,8 +12,8 @@
     </div>
     <form class="buttons">
         <h1 class="confirm">Are you sure you wish to DELETE {{user.first_name}} {{user.last_name}} ?</h1>
-        <button id="cancel" formaction="/">Cancel</button>
-        <button formaction="/{{user.id}}/delete" formmethod="POST">Submit Changes</button>
+        <button id="cancel" formaction="/users">Cancel</button>
+        <button formaction="/users/{{user.id}}/delete" formmethod="POST">Submit Changes</button>
     </div>
    
 

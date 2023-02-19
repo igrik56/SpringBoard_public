@@ -20,6 +20,8 @@ form {
     text-align: center;
     display: flex;
     margin-top: 2%;
+    flex-direction: column;
+    align-items: center;
 }
 
 li {
@@ -55,8 +57,21 @@ li {
 button{
     padding: 5px;
     margin: 5px;
+    width: fit-content;
+    height: fit-content;
 }
 
 input{
     margin: 5px;
+    size: 75;
+    height: fit-content;
+}
+
+div{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
 }

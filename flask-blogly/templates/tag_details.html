@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - {{tag.name}}{% endblock %}
+{% block body_page %}
+    <h1>Posts that has {{tag.name}} tag:</h1>
+    <div>
+        <form>
+            <button formaction="/tags/{{tag.id}}/edit">Edit</button>
+            <button formaction="/tags/{{tag.id}}/delete" formmethod="POST">Delete</button>
+        </form>    
+    </div> 
+    <div>
+        <ul>
+            {% if tag.post %}
+                {% for p in tag.post %}
+                    <li><a href='/users/{{p.creator.id}}/{{p.id}}'>{{p.title}}</a></li> 
+                {% endfor %}
+                {% else %}   
+                    <h3>There are no posts with this tag.</h3>
+                 {% endif %}
+        </ul>
+    </div>
+    
+{% endblock %}

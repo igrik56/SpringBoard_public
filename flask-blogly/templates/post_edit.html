@@ -6,11 +6,21 @@
     <form>
         <div>
             <label>Title:</label>
-            <input type="text", name="title", placeholder="{{post.title}}">
+            <input type="text", name="title", placeholder="{{post.title}}", value="{{post.title}}">
         </div>
         <div>
             <label>Content:</label>
-            <input type="text", name="content", placeholder="{{post.content}}" size="75">
+            <input type="text", name="content", placeholder="{{post.content}}" size="75", value="{{post.content}}">
+        </div>
+
+        <div>
+            <h4>Tags:</h4>
+            <ul>
+                {% for t in tags%}
+                    <label>{{t.name}}</label>
+                    <input type="checkbox", name = 'tags', value="{{t.id}}", id="tag_{{t.id}}">
+                {% endfor %}
+            </ul>
         </div>
 
         <button id="cancel" formaction="/users/{{user.id}}/{{post.id}}">Cancel</button>

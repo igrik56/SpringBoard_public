@@ -13,8 +13,19 @@
             <input type="text", name="content", placeholder="Content" size="75">
         </div>
 
-        <button id="cancel" formaction="/users/{{user.id}}">Cancel</button>
-        <button id="add" formaction="/users/{{user.id}}/post" formmethod="POST">Add</button>
+        <div>
+            <h3>Add Tags:</h3>
+            <p>
+                {% for t in tags%}
+                    <lablel>{{t.name}}</lablel>
+                    <input type="checkbox", name = 'tags', value="{{t.id}}", id="tag_{{t.id}}">
+                {% endfor %}
+            </p>
+        </div>
+        <div>
+            <button id="cancel" formaction="/users/{{user.id}}">Cancel</button>
+            <button id="add" formaction="/users/{{user.id}}/post" formmethod="POST">Add</button>
+         </div>
     </form>
     
 {% endblock %}

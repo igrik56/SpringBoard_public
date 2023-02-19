@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - Tags{% endblock %}
+{% block body_page %}
+    <h1>Tags:</h1>
+
+    <div>
+        <ul>
+            {% for t in tags%}
+                <li><a href="/tags/{{t.id}}">{{t.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Blogly - Tag Creation{% endblock %}
+{% block body_page %}
+    <h1>Create Tag:</h1>
+
+    <form>
+        <div>
+            <label>New Tag:</label>
+            <input type="text", name="tag", placeholder="New Tag">
+        </div>
+        <div>
+            <button id="cancel" formaction="/users">Cancel</button>
+            <button id="add" formaction="/tags/new" formmethod="POST">Add</button>
+        </div>
+        <div>
+           <h3>Tags that alreay exist</h3>
+           <ul>
+            {% for t in tags %}
+                <li> {{t.name}} </li>
+            {% endfor %}
+           </ul>
+        </div>
+    </form>
+    
+{% endblock %}

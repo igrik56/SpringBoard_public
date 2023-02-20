@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}WTForms{% endblock %}
+{% block body_page %}
+    <h1>Add a new pet:</h1>
+    
+        <form id="pet_add" method="POST">
+            {{ form.hidden_tag() }}
+            {% for f in form if f.widget.input_type != 'hidden' %}
+            <div class="form-group">
+                {{f.label}}
+                {{f(class_='form-control')}}
+
+                {% for err in f.errors %}
+                <small class="form-text text-danger">
+                    {{err}}
+                </small>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button class="btn btn-success btn-lg">Submit</button>
+        </form>
+
+
+{% endblock %}

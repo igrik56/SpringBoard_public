@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}WTForms{% endblock %}
+{% block body_page %}
+    <h1>Pets avalible for Adoption:</h1>
+
+    {% for p in pets %}
+        <div class="row justify-content-center">
+            <img scr='{{p.photo_url}}'>
+            <a href="/edit/{{p.id}}">{{p.name}}</a>
+            {% if p.available %}
+                <b> Is Available</b>
+            {% else %}
+                <b>Not Available</b>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <!-- <div> -->
+        <a href="/add" class="btn btn-success btn-lg">Add New Pet</button>
+    <!-- </div> -->
+
+{% endblock %}

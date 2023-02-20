@@ -19,7 +19,7 @@
     <div class="container">
         <div class = list_of_posts>
             <ul>
-                {% for p in user.post %}
+                {% for p in user.posts %}
                 <!-- adding list of users's posts  -->
                     <li><a href="/users/{{user.id}}/{{p.id}}">{{p.title}}</a></li>
                 {% endfor %}

@@ -2,13 +2,13 @@ const BASE_URL = 'http://127.0.0.1:5000/api'
 
 function CupcakesTempaleForHTML(cupcake){
 
-    html_string = ` <div cupcake_id = ${cupcake.id}>
+    html_string = ` <div data-cupcake-id = ${cupcake.id}>
                         <li> ${cupcake.flavor}
                             ${cupcake.size}
                             ${cupcake.rating}/10
                             </li>
                             <img src='${cupcake.image}' alt = 'No Image'>  
-                            <button id='btnDelete' class='btn btn-danger'>Delete</button>
+                            <button id='btnDelete' class='delete-button'>Delete</button>
                     </div>
     `;
     return html_string;
@@ -17,19 +17,14 @@ function CupcakesTempaleForHTML(cupcake){
 async function listCupcakes(){
     const resp = await axios.get(`${BASE_URL}/cupcakes`)
     
- 
-
     for (let c of resp.data.cupcakes){
         let newCupcake = $(CupcakesTempaleForHTML(c))
-        $('#list_cupcakes').append(newCupcake)        
+        $('#cupcakes-list').append(newCupcake)        
     }
 }
 
-
-
-$('#form_cupcake').on('submit', async function(e){
+$('#new-cupcake-form').on('submit', async function(e){
     e.preventDefault();
-
     let flavor = $('#flavor').val()
     let size = $('#size').val()
     let rating = $('#rating').val()
@@ -45,8 +40,8 @@ $('#form_cupcake').on('submit', async function(e){
     })
     // console.log(resp.data)
     let newCupcake = $(CupcakesTempaleForHTML(resp.data.cupcake))
-    $('#list_cupcake').append(newCupcake)
-    $('#form_cupcake').trigger('reset')
+    $('#cupcakes-list').append(newCupcake)
+    $('#new-cupcake-form').trigger('reset')
 });
 
 
@@ -61,16 +56,28 @@ $('#form_cupcake').on('submit', async function(e){
 //         $cupcakeDiv.remove()
     // }
 
-// $('#form_cupcake').on('click', '#btnDelete', async function(e){                         //function does not work. Checked with solution. Can't understand why....
+// $('#new-cupcake-form').on('click', '.delete-button', async function(e){                         //function does not work. Checked with solution. Can't understand why....
 //     e.preventDefault()
 
-//     let $cupcakeDiv = $(e.target).closest('div')
-//     let cupcakeId = $cupcakeDiv.attr('cupcake_id')
+//     console.log('cupcakeId')
 
-//     // console.log(cupcakeId)
+//     let $cupcakeDiv = $(e.target).closest('div')
+//     let cupcakeId = $cupcakeDiv.attr('data-cupcake-id')
+
 
 //     await axios.delete(`${BASE_URL}/cupcakes/${cupcakeId}`)
 //     $cupcakeDiv.remove()
 // });
 
-listCupcakes()
+$("#cupcakes-list").on("click", ".delete-button", async function (evt) {                    //turns out I have you use js naming with "-"
+    evt.preventDefault();
+    let $cupcake = $(evt.target).closest("div");
+    let cupcakeId = $cupcake.attr("data-cupcake-id");
+  
+    await axios.delete(`${BASE_URL}/cupcakes/${cupcakeId}`);
+    $cupcake.remove();
+  });
+
+
+
+$(listCupcakes)

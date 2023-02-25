@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Auth - {{user.username}}{% endblock %}
+{% block body_page %}
+    <h1>{{user.username}} Details</h1>
+
+    <div>
+        <label>E-Mail: </label>
+        <p>{{user.email}}</p>
+        <label>First Name: </label>
+        <p>{{user.first_name}}</p>
+        <label>Last Name: </label>
+        <p>{{user.last_name}}</p>
+    </div>
+
+    <h2>Feedbacks:</h2>
+    <div class="container">
+        <ul>
+            {% for f in user.feedbacks %}
+            <!-- adding list of users's feedback  -->
+                <li>
+                    <a href="/users/{{user.username}}/{{f.id}}">{{f.title}}</a>
+                    <!-- <a href="/feedback/{{f.id}}/update" class="btn btn-warning">Edit</a>
+                    <a href="/feedback/{{f.id}}/delete" class="btn btn-danger">Delete</a> -->
+                </li>
+                {% endfor %}
+            </ul> 
+        </div>
+        
+        <div>
+            <form>
+                <a href="/users/{{user.username}}/feedback/add" class="btn btn-success">Post Feedback</a>    
+            </form>
+            <form class="flex-row float-right" action="/users/{{user.username}}/delete", method="POST">
+                <button  href="/users/{{user.username}}/delete" class="btn btn-danger">Delete Account</button>
+            </form>
+        </div>
+{% endblock %}

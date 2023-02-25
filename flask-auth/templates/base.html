@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+                            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+                            crossorigin="anonymous"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+
+    <title>{%block title%}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark justify-content-between" style="background-color: rgb(13, 12, 12);">
+        <div class="container">
+            {% if session['user_id'] %}
+            <a href="/users/{{session['user_id']}}" class ='navbar-brand text-light'>{{session['user_id']}}</a>
+            <ul class="nav navbar-nav flex-row float-right">
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link pr-3 text-light">Logout</a>
+                </li>
+                {% else %}
+                    <a href="/" class ='navbar-brand text-light'>Home</a>
+                    <ul class="nav navbar-nav flex-row float-right">
+                        <li class="nav-item" style="margin-right: 5px";>
+                            <a class="nav-link pr-3 text-light" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/register">Register</a>
+                        </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block body_page %}{% endblock %}
+    </div>
+</body>
+</html>

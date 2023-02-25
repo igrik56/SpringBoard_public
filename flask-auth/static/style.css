@@ -1,0 +1,83 @@
+/* .nav{
+    background-color: black;
+    text-align: center;
+    overflow: hidden;
+}
+
+.nav a {
+    color: #f2f2f2;
+    padding: 14px 16px;
+    font-size: 34px;
+    text-decoration: none;
+} */
+/* 
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    margin-top: 2%;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    text-align: left;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.avatar{
+    display: flex;
+    align-items: left;
+    width: 120px;
+    height: 120px;
+}
+
+.user_name{
+    display: flex;
+    padding-left: 20px;
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+*/
+/* button{
+    padding: 5px;
+    margin: 5px;
+} */
+/*
+input{
+    margin: 5px;
+    size: 75;
+    height: fit-content;
+}
+
+div{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+} */

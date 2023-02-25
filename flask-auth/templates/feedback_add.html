@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{user.username}}'s - feedback{% endblock %}
+{% block body_page %}
+    <h1>Post your feedback:</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+            <div>
+                {{field.label}}
+                {{field(class_='form-control')}}
+                {% for error in field.errors %}
+                <span class="form-text text-danger">{{error}}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class = "btn btn-success">Post</button>
+        <button type="reset" class="btn btn-danger">Cancel</button>
+        </form>
+
+{% endblock %}

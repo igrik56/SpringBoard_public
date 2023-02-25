@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{session['user_id']}}'s - feedback{% endblock %}
+{% block body_page %}
+    <h1>Post your feedback:</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+            <div>
+                {{field.label}}
+                {{field}}
+                {% for error in field.errors %}
+                <span class="form-text text-danger">{{error}}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class = "btn btn-success">Post</button>
+        <a href= '/users/{{session["user_id"]}}' class="btn btn-danger">Cancel</a>
+        </form>
+
+{% endblock %}

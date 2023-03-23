@@ -1,0 +1,21 @@
+body{
+    text-align: center;
+    background-color: forestgreen;
+}
+
+#btn{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+button{
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

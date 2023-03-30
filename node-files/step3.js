@@ -24,7 +24,7 @@ async function webCat(url, out){
         createOutput(res.data, out)
     }
     catch (err){
-        console.error(`error with ${utl}: ${err}`)
+        console.error(`error with ${url}: ${err}`)
         process.exit(1)
     }
 }

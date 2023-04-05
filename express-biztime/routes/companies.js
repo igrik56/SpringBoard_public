@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
     try{
         const result = await db.query(`SELECT * FROM companies`)
         if (result.rows.length === 0 ){
-            throw new ExpressError(`Can't get any companies`)
+            throw new ExpressError(`Can't get any companies`, 404)
         }
         return res.status(200).json({companies: result.rows})
     }
@@ -28,7 +28,7 @@ router.get('/:code', async (req, res, next) => {
         const { code } = req.params
         const result = await db.query(`SELECT code, name, description FROM companies WHERE code = $1`, [code])
         if (result.rows.length === 0 ){
-            throw new ExpressError(`Can't get a company with ${code}`)
+            throw new ExpressError(`Can't get a company with ${code}`, 404)
         }
         return res.status(200).json({company: result.rows})
     }
@@ -53,7 +53,7 @@ router.post('/', async (req, res, next) => {
                 VALUES ($1, $2, $3)
                 RETURNING *`, [code, name, description]
         )
-        return res.status(201).json(result.rows[0])
+        return res.status(201).json({company: result.rows})
     }
     catch(err){
         return next(err)
@@ -74,7 +74,7 @@ router.patch('/:code', async (req, res, next) => {
         const { code } = req.params
         const result = await db.query(`SELECT code, name, description FROM companies WHERE code = $1`, [code])
         if (result.rows.length === 0 ){
-            throw new ExpressError(`Can't get a company with ${code}`)
+            throw new ExpressError(`Can't get a company with ${code}`, 404)
         }
 
         const {name, description} = req.body
@@ -103,9 +103,9 @@ router.delete('/:code', async (req, res, next) => {
             "DELETE FROM companies WHERE code = $1",
             [req.params.code]
             )
-        if (result.rows.length === 0 ){
-            throw new ExpressError(`Can't get a company with ${code}`)
-        }
+        // if (result.rows.length === 0){
+        //     throw new ExpressError(`Can't get a company with ${code}`, 404)
+        // }
 
         return res.status(200).json({status: 'deleted'})
     }

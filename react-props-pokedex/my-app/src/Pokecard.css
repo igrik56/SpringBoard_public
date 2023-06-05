@@ -1,0 +1,13 @@
+.Pokecard{
+    display: inline-block;
+    background-color: antiquewhite;
+    border-radius: 15px;
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+h3{
+    color: blue;
+    font-weight: bold;
+}

@@ -1,0 +1,8 @@
+.Board {
+  margin: 0 auto;
+  border: 1rem;
+}
+tbody{
+  border: 2px;
+  border-color: black;
+}

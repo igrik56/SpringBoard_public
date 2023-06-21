@@ -1,0 +1,24 @@
+.Deck {
+    text-align: center;
+  }
+  
+  .getCard {
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    margin: 0 10px;
+  }
+  
+  .getCard:hover {
+    cursor: pointer;
+    background-color: #444;
+  }
+  
+  .getCard:active,
+  .getCard:focus {
+    outline: none;
+  }
+
+  

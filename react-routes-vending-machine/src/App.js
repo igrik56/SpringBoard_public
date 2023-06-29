@@ -20,7 +20,7 @@ function App() {
           <Route exact path = '/Chips' element ={<Chips />} />
           <Route exact path = '/Pudding' element={<Pudding />} />
           <Route exact path = '/Kolobochek' element={<Kolobochek />} />
-          </Routes>      
+        </Routes>      
      </BrowserRouter>
     </div>
   );
